@@ -17,6 +17,8 @@ April 1, 2020
 
 We're using the nyt data set here: https://github.com/nytimes/covid-19-data
 
+Our plot was inspired by this video: https://www.youtube.com/watch?v=54XLXg4fYsc
+
 
 ### Participants:
 Neeraj T
