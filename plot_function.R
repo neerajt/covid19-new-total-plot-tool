@@ -3,8 +3,8 @@
 library(dplyr)
 library(lubridate)
 library(ggplot2)
-# read data
 
+# read data
 covid19_counties <- read.csv('https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-counties.csv', stringsAsFactors = F) %>%
   mutate(date=lubridate::ymd(date))
 
@@ -33,7 +33,12 @@ pull_data_for_location <- function(location_string, state_df=covid19_states, cou
   return(location_df)
 }
 
+#* plot covid 19 data for one or more locations
+#* @param location_list The location or locations to plot
+#* @png
+#* @get /plot
 plot_location <- function(location_list){
+  print(paste("Location List:", location_list))
    plot_df <- data.frame()
    for(location in location_list){
      comparison <- pull_data_for_location(location) %>%
@@ -47,6 +52,6 @@ plot_location <- function(location_list){
      labs(title="Total Cases by Date",
           subtitle="in some place(s)",
           caption="Data from The New York Times, based on reports from state and local health agencies.")
-   return(plt)
+   return(print(plt))
  }
 
