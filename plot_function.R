@@ -43,7 +43,7 @@ pull_data_for_location <- function(
 #* get covid 19 dataframe for one or more locations
 #* @param location_list The location or locations to plot
 #* @json
-#* @get /data
+#* @get /api/data
 get_plot_df <- function(location_list) {
   plot_df <- data.frame()
   for (location in location_list) {
@@ -70,5 +70,7 @@ plot_location <- function(location_list) {
           subtitle = "in some place(s)",
           caption = "Data from The New York Times, based on reports from state and local health agencies.")
    return(print(plt))
- }
+}
 
+#* @assets ./static /charts
+list()
