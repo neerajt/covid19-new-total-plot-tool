@@ -43,7 +43,10 @@ plot_location <- function(location_list){
    }
    plt <- ggplot(plot_df) + 
      geom_point(aes(x=date, y=cases, color=location_name)) +
-     scale_x_date(date_labels = "%b-%d")
+     scale_x_date(date_labels = "%b-%d") +
+     labs(title="Total Cases by Date",
+          subtitle="in some place(s)",
+          caption="Data from The New York Times, based on reports from state and local health agencies.")
    return(plt)
  }
 

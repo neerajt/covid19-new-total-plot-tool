@@ -28,3 +28,6 @@ Karen N
 Jonathan C
 Sara M
 Victoria V
+Laketa H
+Amanda S
+Weiyang S
