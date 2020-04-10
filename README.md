@@ -4,6 +4,12 @@ We started developing this tool collaboratively April 1, 2020.
 
 ### Development summary
 
+April 9, 2020
+- Configured API to serve plot png
+
+April 8, 2020
+- Refactored plot function
+
 April 2, 2020
 - Refactored project
 - Generalized functionality to any state or state:county
