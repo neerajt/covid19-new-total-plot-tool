@@ -1,37 +1,27 @@
-var ctx = document.getElementById('myChart').getContext('2d');
+var ctx = document.getElementById("myChart").getContext('2d');
+
+$.get("http://localhost:8000/plot-data?location_list=Texas:Harris&location_list=New%20York&location_list=New%20York:New%20York%20City", function(data, status){
+    alert("Data: " + data + "\nStatus: " + status);
+  });
+// Define the data 
+var data = [
+  
+]; // Add data values to array
+// End Defining data
+var options = {responsive: true, // Instruct chart js to respond nicely.
+    maintainAspectRatio: false, // Add to prevent default behaviour of full-width/height 
+};
+
+// End Defining data
 var myChart = new Chart(ctx, {
-    type: 'bar',
+    type: 'scatter',
     data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
         datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true
-                }
+                label: 'Population', // Name the series
+                data: data, // Specify the data values array
+          borderColor: '#2196f3', // Add custom color border            
+          backgroundColor: '#2196f3', // Add custom color background (Points and Fill)
             }]
-        }
-    }
+    },
+    options: options
 });

@@ -8,13 +8,20 @@ covid19_counties_url <- 'https://raw.githubusercontent.com/nytimes/covid-19-data
 covid19_states_url <- 'https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-states.csv'
 
 # read data
-covid19_counties <- read.csv(covid19_counties_url, stringsAsFactors = F) %>%
-  mutate(date = lubridate::ymd(date))
 
-write.csv(covid19_counties, 'covid19_counties.csv', row.names = F)
+covid19_counties <- read.csv('https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-counties.csv', stringsAsFactors = F) %>%
+  mutate(date=lubridate::ymd(date)) %>%
+  group_by(state, county) %>%
+  mutate(new_cases=cases - lag(cases, 1),
+         new_deaths=deaths - lag(deaths, 1)) %>%
+  ungroup()
 
-covid19_states <- read.csv(covid19_states_url) %>%
-  mutate(date = lubridate::ymd(date))
+covid19_states <- read.csv('https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-states.csv') %>%
+  mutate(date=lubridate::ymd(date)) %>%
+  group_by(state) %>%
+  mutate(new_cases=cases - lag(cases, 1),
+         new_deaths=deaths - lag(deaths, 1)) %>%
+  ungroup()
 
 parse_location_string <- function(location_string) {
   location_pair <- strsplit(location_string, ":")[[1]]
@@ -40,16 +47,18 @@ pull_data_for_location <- function(
   return(location_df)
 }
 
-#* get covid 19 dataframe for one or more locations
+
+#* return covid 19 data for one or more locations
 #* @param location_list The location or locations to plot
 #* @json
-#* @get /api/data
-get_plot_df <- function(location_list) {
+#* @get /plot-data
+pull_data_for_location_list <- function(location_list){
   plot_df <- data.frame()
-  for (location in location_list) {
+  for(location in location_list){
     comparison <- pull_data_for_location(location) %>%
-      select(date, cases, deaths) %>%
-      mutate(location_name = location)
+      select(date, cases, new_cases, deaths, new_deaths) %>%
+      mutate(location_name=location)
+
     plot_df <- rbind(plot_df, comparison)
   }
   return(plot_df)
@@ -61,14 +70,14 @@ get_plot_df <- function(location_list) {
 #* @get /plot
 plot_location <- function(location_list) {
   print(paste("Location List:", location_list))
-  plot_df <- get_plot_df(location_list)
 
-  plt <- ggplot(plot_df) +
-    geom_point(aes(x = date, y = cases, color = location_name)) +
-    scale_x_date(date_labels = "%b-%d") +
-    labs(title = "Total Cases by Date",
-          subtitle = "in some place(s)",
-          caption = "Data from The New York Times, based on reports from state and local health agencies.")
+   plot_df <- pull_data_for_location_list(location_list)
+   plt <- ggplot(plot_df) + 
+     geom_point(aes(x=date, y=cases, color=location_name)) +
+     scale_x_date(date_labels = "%b-%d") +
+     labs(title="Total Cases by Date",
+          subtitle="in some place(s)",
+          caption="Data from The New York Times, based on reports from state and local health agencies.")
    return(print(plt))
 }
 
