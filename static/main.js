@@ -1,8 +1,17 @@
+$( document ).ready(function() {
+    console.log( "ready!" );
+	
+	var requestValue = "http://127.0.0.1:8000/plot-data?location_list=Texas:Harris&location_list=New%20York&location_list=New%20York:New%20York%20City";
+	 $.getJSON(requestValue, function(result){
+		$.each(result, function(i, field){
+		  console.log(field.cases);
+		});
+	 });
+});
+
 var ctx = document.getElementById("myChart").getContext('2d');
 
-$.get("http://localhost:8000/plot-data?location_list=Texas:Harris&location_list=New%20York&location_list=New%20York:New%20York%20City", function(data, status){
-    alert("Data: " + data + "\nStatus: " + status);
-  });
+
 // Define the data 
 var data = [
   

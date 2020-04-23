@@ -48,6 +48,12 @@ pull_data_for_location <- function(
 }
 
 
+#* @filter cors
+cors <- function(res) {
+    res$setHeader("Access-Control-Allow-Origin", "*")
+    plumber::forward()
+}
+
 #* return covid 19 data for one or more locations
 #* @param location_list The location or locations to plot
 #* @json
