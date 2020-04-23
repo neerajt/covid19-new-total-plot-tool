@@ -54,10 +54,10 @@ cors <- function(res) {
     plumber::forward()
 }
 
-#* return covid 19 data for one or more locations
+#* return raw covid 19 data for one or more locations
 #* @param location_list The location or locations to plot
 #* @json
-#* @get /plot-data
+#* @get /src-data
 pull_data_for_location_list <- function(location_list){
   plot_df <- data.frame()
   for(location in location_list){
@@ -68,6 +68,15 @@ pull_data_for_location_list <- function(location_list){
     plot_df <- rbind(plot_df, comparison)
   }
   return(plot_df)
+}
+
+#* return plottable covid 19 data for one or more locations
+#* @param location_list The location or locations to plot
+#* @json
+#* @get /plot-data
+plot_data <- function(location_list){
+  plot_df <- pull_data_for_location_list(location_list)
+
 }
 
 #* plot covid 19 data for one or more locations
