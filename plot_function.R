@@ -75,8 +75,11 @@ pull_data_for_location_list <- function(location_list){
 #* @json
 #* @get /plot-data
 plot_data <- function(location_list){
-  plot_df <- pull_data_for_location_list(location_list)
-
+  plot_df <- pull_data_for_location_list(location_list) %>%
+    mutate(x = date, y = cases) %>%
+    select(x, y) %>%
+    filter(!is.na(x) & !is.na(y))
+  return(plot_df)
 }
 
 #* plot covid 19 data for one or more locations
