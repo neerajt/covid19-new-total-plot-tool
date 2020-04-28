@@ -4,6 +4,11 @@ We started developing this tool collaboratively April 1, 2020.
 
 ### Development summary
 
+April 10-28, 2020
+- Configure API to serve plot data in json
+- Created a static html page with chart js
+- Refactored API and chart code
+
 April 9, 2020
 - Configured API to serve plot png
 
