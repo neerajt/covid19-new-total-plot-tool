@@ -2,6 +2,13 @@
 
 We started developing this tool collaboratively April 1, 2020.
 
+### To do
+
+- [ ] Allow for multiple locations on chart
+- [ ] UI for selecting location(s)
+- [ ] Deploy to heroku
+- [ ] Add logging to front end and/or back end
+
 ### Development summary
 
 April 10-28, 2020
