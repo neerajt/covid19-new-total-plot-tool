@@ -52,14 +52,6 @@ $(document).ready(function () {
 });
 
 
-<<<<<<< Updated upstream
-    var requestValue = "http://127.0.0.1:8000/plot-data?location_list=Texas:Harris";
-    $.getJSON(requestValue, function (result) {
-
-        var apiData = result.map(makePoint)
-        console.log(apiData)
-        datasets.push(makeDataset("Testing", apiData))
-=======
 function getData(data = ["Texas:Harris", "New York"]){
     datasets = []
 
@@ -74,7 +66,6 @@ function getData(data = ["Texas:Harris", "New York"]){
             var points = location_grouped[location].map(makePoint)
             datasets.push(makeDataset(location, points))
         });
->>>>>>> Stashed changes
 
         updateChart(datasets)
 

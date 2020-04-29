@@ -51,9 +51,6 @@ function initChart() {
 function updateChart(datasets) {
     config.data.datasets = datasets
     myChart.update()
-<<<<<<< Updated upstream
-}
-=======
 }
 
 function getLocation(object){
@@ -78,4 +75,3 @@ $(document).ready(function() {
 
   });
 });
->>>>>>> Stashed changes
