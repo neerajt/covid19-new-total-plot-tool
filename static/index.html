@@ -1,38 +1,87 @@
 <!DOCTYPE html>
-<html>
+<html class="has-background-white-ter">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Starting</title>
+    <title>COVID Graphs</title>
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="bulma-checkbox.css">
+
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-colorschemes"></script>
     <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.15/lodash.min.js"></script>
 
+    <script src="tag-autocomplete.js"></script>
+    <script src="main.js"></script>
+    <script src="utils.js"></script>
+
 </head>
-<body>
+<body class="has-text-grey-dark">
+<nav class="navbar is-link" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+        <div class="navbar-item" href="https://bulma.io">
+            <b>COVID Data Visualizer</b>
+        </div>
+
+        <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
+           data-target="navbarBasicExample">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+    </div>
+
+    <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+            <a class="navbar-item">
+                Chart 1
+            </a>
+            <a class="navbar-item">
+                Chart 2
+            </a>
+            <a class="navbar-item">
+                Chart 3
+            </a>
+        </div>
+
+    </div>
+</nav>
+
 <section class="section">
     <div class="container">
         <div class="columns">
             <div class="column">
                 <h1 class="title">
-                    Hello World
+                    Cases over Time by State/County
                 </h1>
+                <div class="field">
+                    <div id="chips-container" class="control chips">
+                        <input id="ms1" class="input" type="text" placeholder="Enter city here" name="ms1"
+                               style="height: 32px;">
+                    </div>
+                </div>
             </div>
         </div>
         <div class="columns">
-            <div class="column">
-                Buttons here
-            </div>
-            <div class="column is-two-thirds">
+            <div class="column is-four-fifths">
                 <canvas id="myChart" width="200" height="450"></canvas>
+            </div>
+            <div class="column">
+                <h3 class="title is-5">
+                    Options
+                </h3>
+                <div class="field">
+                    <input class="is-checkradio" id="logy" type="checkbox" name="exampleRtlCheckbox">
+                    <label for="logy">Log Scaling</label>
+                </div>
             </div>
         </div>
     </div>
 </section>
-<script src="./main.js"></script>
-<script src="./utils.js"></script>
 </body>
 </html>
