@@ -50,3 +50,7 @@ function updateChart(datasets) {
     config.data.datasets = datasets
     myChart.update()
 }
+
+function getLocation(object){
+    return object.location_name
+}
