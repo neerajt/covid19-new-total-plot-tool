@@ -1,3 +1,5 @@
+const BASE_URL = "http://localhost:8000/plot-data?"
+
 //Chart Configuration data
 var options = {
     scales: {
@@ -49,4 +51,31 @@ function initChart() {
 function updateChart(datasets) {
     config.data.datasets = datasets
     myChart.update()
+<<<<<<< Updated upstream
 }
+=======
+}
+
+function getLocation(object){
+    return object.location_name
+}
+
+function makeRequestUrl(data){
+    url = BASE_URL
+    data.map(location => url = url + "location_list=" + encodeURI(location) + "&")
+    return url
+}
+
+
+$(document).ready(function() {
+
+  // Check for click events on the navbar burger icon
+  $(".navbar-burger").click(function() {
+
+      // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+      $(".navbar-burger").toggleClass("is-active");
+      $(".navbar-menu").toggleClass("is-active");
+
+  });
+});
+>>>>>>> Stashed changes
