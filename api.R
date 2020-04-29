@@ -1,3 +1,9 @@
 library(plumber)
-r <- plumb("plot_function.R")  # Where 'plumber.R' is the location of the file shown above
+pwd <- Sys.getenv("PWD")
+if(pwd != ""){
+    app_path <- paste(pwd, "plot_function.R", sep="/")
+} else{
+    app_path <- "plot_function.R"
+}
+r <- plumb(app_path)  # Where 'plumber.R' is the location of the file shown above
 r$run(port=8000)
