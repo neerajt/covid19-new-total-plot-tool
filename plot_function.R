@@ -4,6 +4,10 @@ library(dplyr)
 library(lubridate)
 library(ggplot2)
 
+# example API call
+
+# http://localhost:8000/plot?location_list=Texas:Harris&location_list=New%20York&location_list=New%20York:New%20York%20City
+
 covid19_counties_url <- 'https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-counties.csv'
 covid19_states_url <- 'https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-states.csv'
 
@@ -76,6 +80,7 @@ pull_data_for_location_list <- function(location_list){
 #* @get /plot-data
 plot_data <- function(location_list){
   plot_df <- pull_data_for_location_list(location_list) %>%
+    group_by(location_name) %>%
     mutate(x = date, y = cases) %>%
     select(x, y) %>%
     filter(!is.na(x) & !is.na(y))
