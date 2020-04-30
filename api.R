@@ -15,7 +15,7 @@ if(pwd == "/"){
 if(heroku_port == ""){
     port <- 8000
 } else if(heroku_port != ""){
-    port <- heroku_port
+    port <- as.integer(heroku_port)
 }
 
 r <- plumb(app_path)  # Where 'plumber.R' is the location of the file shown above
