@@ -19,4 +19,4 @@ if(heroku_port == ""){
 }
 
 r <- plumb(app_path)  # Where 'plumber.R' is the location of the file shown above
-r$run(port=port)
+r$run(host='0.0.0.0', port=port)
