@@ -2,14 +2,20 @@
 
 We started developing this tool collaboratively April 1, 2020.
 
+https://covid-plot-tool.herokuapp.com/
+
 ### To do
 
-- [ ] Allow for multiple locations on chart
-- [ ] UI for selecting location(s)
-- [ ] Deploy to heroku
+- [x] Allow for multiple locations on chart
+- [x] UI for selecting location(s)
+- [_] Deploy to heroku
 - [ ] Add logging to front end and/or back end
 
 ### Development summary
+
+April 29, 2020
+- Deploy the API on heroku
+- Front end still needs work
 
 April 10-28, 2020
 - Configure API to serve plot data in json
