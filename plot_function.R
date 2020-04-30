@@ -104,5 +104,5 @@ plot_location <- function(location_list) {
    return(print(plt))
 }
 
-#* @assets ./static /charts
+#* @assets ./static /
 list()
