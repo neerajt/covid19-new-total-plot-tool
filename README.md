@@ -8,7 +8,7 @@ https://covid-plot-tool.herokuapp.com/
 
 - [x] Allow for multiple locations on chart
 - [x] UI for selecting location(s)
-- [_] Deploy to heroku
+- [ ] Deploy to heroku
 - [ ] Add logging to front end and/or back end
 
 ### Development summary
