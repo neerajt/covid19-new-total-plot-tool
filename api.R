@@ -1,5 +1,6 @@
 library(plumber)
 pwd <- Sys.getenv("PWD")
+
 print(paste("pwd var is set to", pwd))
 
 if(pwd != ""){
