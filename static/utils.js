@@ -1,4 +1,4 @@
-const BASE_URL = "http://covid-plot-tool.herokuapp.com/plot-data?"
+const BASE_URL = "https://covid-plot-tool.herokuapp.com/plot-data?"
 
 //Chart Configuration data
 var options = {
