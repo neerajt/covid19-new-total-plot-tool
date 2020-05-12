@@ -104,5 +104,15 @@ plot_location <- function(location_list) {
    return(print(plt))
 }
 
+#* return all state and state:county items
+#* @json
+#* @get /location-list
+get_location_list <- function(  state_df = covid19_states, county_df = covid19_counties) {
+  state_list <- sort(unique(as.character(state_df$state)))
+  county_list <- sort(unique(paste(county_df$state, county_df$county, sep=':')))
+  location_list <- c(state_list, county_list)
+  return(location_list)
+}
+
 #* @assets /app/static /
 list()
