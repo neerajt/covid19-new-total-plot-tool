@@ -157,7 +157,7 @@ function ready(error, data, us) {
 
     function update(year) {
         slider.property("value", year);
-        d3.select(".year").text(year);
+        d3.select(".year").text((new Date(+year)).toString());
         countyShapes.style("fill", function (d) {
             if (!d.properties.years || !d.properties.years[year]) {
                 return "#cccccc"
@@ -182,7 +182,7 @@ function ready(error, data, us) {
             update(year);
         });
 
-    update(1996);
+    update(end_date);
 
 }
 
