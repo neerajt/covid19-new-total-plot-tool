@@ -3,114 +3,124 @@
 <html>
 <head>
 
-<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400italic,600italic,700italic,200,300,400,600,700,900">
-<script src="https://d3js.org/d3.v3.min.js"></script>
-<script src="https://d3js.org/queue.v1.min.js"></script>
-<script src="https://d3js.org/topojson.v1.min.js"></script>
+    <link rel="stylesheet" type="text/css"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400italic,600italic,700italic,200,300,400,600,700,900">
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <script src="https://d3js.org/queue.v1.min.js"></script>
+    <script src="https://d3js.org/topojson.v1.min.js"></script>
 
-<style>
+    <script src="https://d3js.org/d3-array.v2.min.js"></script>
+    <script src="https://d3js.org/d3-color.v1.min.js"></script>
+    <script src="https://d3js.org/d3-format.v1.min.js"></script>
+    <script src="https://d3js.org/d3-interpolate.v1.min.js"></script>
+    <script src="https://d3js.org/d3-time.v1.min.js"></script>
+    <script src="https://d3js.org/d3-time-format.v2.min.js"></script>
+    <script src="https://d3js.org/d3-scale.v3.min.js"></script>
 
-body, h1, h2, h3, p {
-  margin: 0;
-  padding: 0;
-  font-family: 'Source Sans Pro', sans-serif;
-  font-size: 1em;
-  color: #333;
-  font-weight: 400;
-}
 
-#content {
-  margin: 5px;
-  padding: 20px;
-  width: 805px;
-  border: 1px solid #ccc;
-}
+    <style>
 
-#map {
-  margin: 10px 0px 0px 0px;
-  padding: 0px;
-}
+        body, h1, h2, h3, p {
+            margin: 0;
+            padding: 0;
+            font-family: 'Source Sans Pro', sans-serif;
+            font-size: 1em;
+            color: #333;
+            font-weight: 400;
+        }
 
-h1, h2 {
-  line-height: 1em;
-  font-size: 1.75em;
-  font-weight: 900;
-  color: #000;
-}
+        #content {
+            margin: 5px;
+            padding: 20px;
+            width: 805px;
+            border: 1px solid #ccc;
+        }
 
-h2.year {
-  margin: 10px 0px 0px 0px;
-  font-size: 1.3em;
-  font-weight: 700;
-}
+        #map {
+            margin: 10px 0px 0px 0px;
+            padding: 0px;
+        }
 
-p {
-  margin: 10px 0px 0px 0px;
-}
+        h1, h2 {
+            line-height: 1em;
+            font-size: 1.75em;
+            font-weight: 900;
+            color: #000;
+        }
 
-.county {
-  fill: #fff;
-}
+        h2.year {
+            margin: 10px 0px 0px 0px;
+            font-size: 1.3em;
+            font-weight: 700;
+        }
 
-.states {
-  fill: none;
-  stroke: #fff;
-  stroke-linejoin: round;
-}
+        p {
+            margin: 10px 0px 0px 0px;
+        }
 
-input {
-  display: block;
-  width: 200px;
-  margin: 10px 0px 0px 0px;
-}
+        .county {
+            fill: #fff;
+        }
 
-#legend text {
-  font-size: 0.9em;
-  color: #333;
-  font-weight: 400;
-}
+        .states {
+            fill: none;
+            stroke: #fff;
+            stroke-linejoin: round;
+        }
 
-.tooltip {
-  position: absolute;
-  padding: 7px;
-  font-size: 0.9em;
-  pointer-events: none;
-  background: #fff;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+        input {
+            display: block;
+            width: 200px;
+            margin: 10px 0px 0px 0px;
+        }
 
-  -moz-box-shadow:    3px 3px 10px 0px rgba(0, 0, 0, 0.25);
-  -webkit-box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.25);
-  box-shadow:         3px 3px 10px 0px rgba(0, 0, 0, 0.25);
-}
+        #legend text {
+            font-size: 0.9em;
+            color: #333;
+            font-weight: 400;
+        }
 
-.tooltip p {
-  margin: 0;
-  padding: 0;
-}
+        .tooltip {
+            position: absolute;
+            padding: 7px;
+            font-size: 0.9em;
+            pointer-events: none;
+            background: #fff;
+            border: 1px solid #ccc;
+            border-radius: 4px;
 
-.tooltip table {
-  margin: 0;
-  padding: 0;
-  border-collapse: collapse;
-}
+            -moz-box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.25);
+            -webkit-box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.25);
+            box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.25);
+        }
 
-.wide {
-  width: 140px;
-}
+        .tooltip p {
+            margin: 0;
+            padding: 0;
+        }
 
-</style>
+        .tooltip table {
+            margin: 0;
+            padding: 0;
+            border-collapse: collapse;
+        }
+
+        .wide {
+            width: 140px;
+        }
+
+    </style>
 
 </head>
 
 <body>
 
 <div id="content">
-	<h1>U.S. Daily Cigarette Smoking Rate, 1996-2012</h1>
-	<h2 class="year"></h2>
-	<div class="slider"></div>
-	<div id="map"></div>
-	<p>Source: Institute for Health Metrics and Evaluation.</p>
+    <h1>U.S. Daily Cigarette Smoking Rate, 1996-2012</h1>
+    <h2 class="year"></h2>
+    <div class="slider"></div>
+    <div id="map"></div>
+    <p>Source: Institute for Health Metrics and Evaluation.</p>
 </div>
 
 <script type="text/javascript" src="map.js"></script>
