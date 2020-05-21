@@ -22,9 +22,6 @@ queue()
 
 var color = d3.scaleLog()
     .domain([32, 10000])
-    //.domain([10, 12.5, 15, 17.5, 20, 22.5, 25])
-    //.domain([32, 64, 128, 256, 1024, 2048, 4096, 8192, 16384, 16384*2])
-    // .range(["#fff7bc", "#fee391", "#fec44f", "#fe9929", "#ec7014", "#cc4c02", "#993404", "#662506"]);
     .base(2)
     .range(["lightblue", "darkblue"])
 
