@@ -26,25 +26,10 @@ var color = d3.scaleLog()
     .base(2)
     .range(["lightblue", "darkblue"])
 
-//TODO make a better legend
-var legendNumbers = [32, 128, 256, 512, 1024, 2000, 4000, 10000, 20000, 30000, 40000, 50000]
-//var legendText = makeLegendText(legendNumbers)
-var legendText = ["", "10%", "", "15%", "", "20%", "", "25%"];
+var legendNumbers = [32, 128, 256, 512, 1024, 2000, 4000, 10000]
+var legendText = legendNumbers
 var legendColors = legendNumbers.map(color)
 
-// var legendColors = ["#fff7bc", "#fee391", "#fec44f", "#fe9929", "#ec7014", "#cc4c02", "#993404", "#662506"];
-
-function makeLegendText(numbers){
-    var arr = []
-    for(var i = 0; i<numbers.length*2; i++){
-        if(i % 2 == 0){
-            arr.push(numbers[i/2])
-        }else{
-            arr.push("")
-        }
-    }
-    return arr
-}
 
 function ready(error, data, us) {
 
@@ -69,7 +54,7 @@ function ready(error, data, us) {
 
     counties.features.forEach(function (county) {
         county.properties.years = dataByCountyByYear[+county.id]
-        console.log(dataByCountyByYear[+county.id])
+        //console.log(dataByCountyByYear[+county.id])
     });
 
     window.counties = counties
@@ -129,18 +114,19 @@ function ready(error, data, us) {
         .attr("id", "legend");
 
     var legenditem = legend.selectAll(".legenditem")
+        //number of legend divisions
         .data(d3.range(8))
         .enter()
         .append("g")
         .attr("class", "legenditem")
         .attr("transform", function (d, i) {
-            return "translate(" + i * 31 + ",0)";
+            return "translate(" + i * 51 + ",0)";
         });
 
     legenditem.append("rect")
-        .attr("x", width - 240)
+        .attr("x", width - 400  )
         .attr("y", -7)
-        .attr("width", 30)
+        .attr("width", 50)
         .attr("height", 6)
         .attr("class", "rect")
         .style("fill", function (d, i) {
@@ -148,16 +134,20 @@ function ready(error, data, us) {
         });
 
     legenditem.append("text")
-        .attr("x", width - 240)
+        .attr("x", width - 400)
         .attr("y", -10)
-        .style("text-anchor", "middle")
+        .style("text-anchor", "right")
         .text(function (d, i) {
             return legendText[i];
         });
 
     function update(year) {
         slider.property("value", year);
-        d3.select(".year").text((new Date(+year)).toString());
+
+        var date = new Date(+year)
+        date = moment(date).format('MMMM Do YYYY')
+        d3.select(".year").text(date);
+
         countyShapes.style("fill", function (d) {
             if (!d.properties.years || !d.properties.years[year]) {
                 return "#cccccc"
@@ -169,6 +159,7 @@ function ready(error, data, us) {
 
     var start_date = new Date("2020-01-21")
     var end_date = new Date("2020-05-13")
+    var end_time = end_date.getTime()
     //1589414400000
 
     var slider = d3.select(".slider")
@@ -177,12 +168,13 @@ function ready(error, data, us) {
         .attr("min", start_date * 1)
         .attr("max", end_date * 1)
         .attr("step", 86400000)
-        .on("input", function () {
+        .attr("value", end_time)
+        .on("change", function () {
             var year = this.value;
             update(year);
-        });
+        })
 
-    update(end_date);
+    update(end_time)
 
 }
 
