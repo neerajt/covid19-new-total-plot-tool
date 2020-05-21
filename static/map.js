@@ -169,7 +169,8 @@ function ready(error, data, us) {
         .attr("max", end_date * 1)
         .attr("step", 86400000)
         .attr("value", end_time)
-        .on("change", function () {
+        .attr("class", "slider is-fullwidth is-large is-circle")
+        .on("input", function () {
             var year = this.value;
             update(year);
         })

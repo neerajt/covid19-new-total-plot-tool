@@ -50,7 +50,7 @@ function getLocationList() {
 function initTagInput(locationArray){
     var jsonData = [];
 
-    console.log(locationArray)
+    //console.log(locationArray)
 
     for (var i = 0; i < locationArray.length; i++) jsonData.push({id: i, name: locationArray[i]});
 
@@ -71,7 +71,7 @@ function initTagInput(locationArray){
 
         //make sure a change has happened
         if (lastSelectedLength != currentValues.length) {
-            console.log(currentValues)
+            //console.log(currentValues)
             var data = _.map(currentValues, 'name');
             getData(data)
         }
