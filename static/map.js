@@ -1,11 +1,13 @@
 var margin = {top: 20, right: 20, bottom: 20, left: 20};
+var padding = 40
 width = 800 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom,
     formatPercent = d3.format(".1%");
 
 var svg = d3.select("#map").append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
+    .attr("width", width + margin.left + margin.right + padding)
+    .attr("height", height + margin.top + margin.bottom + padding)
+    .attr("class", "box")
     .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
@@ -169,7 +171,7 @@ function ready(error, data, us) {
         .attr("max", end_date * 1)
         .attr("step", 86400000)
         .attr("value", end_time)
-        .attr("class", "slider is-fullwidth is-large is-circle")
+        .attr("class", "slider is-large is-circle")
         .on("input", function () {
             var year = this.value;
             update(year);
