@@ -5,7 +5,7 @@
 
 .tag-ctn{
     position: relative;
-    height: 28px;
+    height: 32px !important;
     padding: 0;
     margin-bottom: 0px;
     font-size: 14px;
