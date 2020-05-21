@@ -59,10 +59,10 @@
     <div id="navbarBasicExample" class="navbar-menu">
         <div class="navbar-start">
             <a class="navbar-item" data-name="cases-time">
-                Chart 1
+                Cases over Time
             </a>
             <a class="navbar-item" data-name="chloropleth">
-                Chart 2
+                Chloropleth
             </a>
             <a class="navbar-item">
                 Chart 3
@@ -104,86 +104,12 @@
             </div>
         </div>
     </section>
-    <style>
-
-
-        #content {
-            margin: 5px;
-            padding: 20px;
-            width: 805px;
-            border: 1px solid #ccc;
-        }
-
-        #map {
-            margin: 10px 0px 0px 0px;
-            padding: 0px;
-        }
-
-        .county {
-            fill: #fff;
-            /*stroke: ;*/
-        }
-
-        .states {
-            fill: none;
-            stroke: darkgray;
-            stroke-linejoin: round;
-        }
-
-        input {
-            display: block;
-            width: 840px;
-            margin: 10px 0px 0px 0px;
-        }
-
-        #legend text {
-            font-size: 0.85em;
-            color: #333;
-            font-weight: 400;
-        }
-
-        .tooltip {
-            position: absolute;
-            padding: 7px;
-            font-size: 0.9em;
-            pointer-events: none;
-            background: #fff;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-
-            -moz-box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.25);
-            -webkit-box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.25);
-            box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.25);
-        }
-
-        .tooltip p {
-            margin: 0;
-            padding: 0;
-        }
-
-        .tooltip table {
-            margin: 0;
-            padding: 0;
-            border-collapse: collapse;
-        }
-
-        .wide {
-            width: 140px;
-        }
-
-        .footer{
-            padding: 3rem 1.5rem 3rem;
-        }
-
-    </style>
-
     <section class="section chloropleth">
         <div class="container">
             <h1 class="title">COVID Cases By County</h1>
             <h2 class="year subtitle"></h2>
             <div class="slider"></div>
             <div id="map"></div>
-
         </div>
     </section>
 </div>
@@ -197,7 +123,6 @@
             York Times</a>, based on reports from state and local health agencies.</p>
     </div>
 </footer>
-
 
 <script src="routing.js"></script>
 <script type="text/javascript" src="map.js"></script>
