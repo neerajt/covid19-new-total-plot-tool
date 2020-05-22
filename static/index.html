@@ -23,7 +23,6 @@
     <script src="utils.js"></script>
 
 
-
     <link rel="stylesheet" type="text/css"
           href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400italic,600italic,700italic,200,300,400,600,700,900">
     <script src="https://d3js.org/d3.v3.min.js"></script>
@@ -45,7 +44,7 @@
 <body class="has-text-grey-dark">
 <nav class="navbar is-link" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
-        <div class="navbar-item" href="https://bulma.io">
+        <div class="navbar-item">
             <b>COVID Data Visualizer</b>
         </div>
 
@@ -60,10 +59,10 @@
     <div id="navbarBasicExample" class="navbar-menu">
         <div class="navbar-start">
             <a class="navbar-item" data-name="cases-time">
-                Chart 1
+                Cases over Time
             </a>
             <a class="navbar-item" data-name="chloropleth">
-                Chart 2
+                Chloropleth
             </a>
             <a class="navbar-item">
                 Chart 3
@@ -73,7 +72,7 @@
     </div>
 </nav>
 <div id="charts">
-    <section class="section" id="cases-time">
+    <section class="section cases-time">
         <div class="container">
             <div class="columns">
                 <div class="column">
@@ -82,15 +81,16 @@
                     </h1>
                     <div class="field">
                         <div id="chips-container" class="control chips">
-                            <input id="ms1" class="input" type="text" placeholder="Enter city here" name="ms1"
-                                   style="height: 32px;">
+                            <input id="ms1" class="input" type="text" placeholder="Enter city here" name="ms1">
                         </div>
                     </div>
                 </div>
             </div>
             <div class="columns">
                 <div class="column is-four-fifths">
-                    <canvas id="myChart" width="200" height="450"></canvas>
+                    <div class="box">
+                        <canvas id="myChart" width="200" height="450"></canvas>
+                    </div>
                 </div>
                 <div class="column">
                     <h3 class="title is-5">
@@ -104,113 +104,26 @@
             </div>
         </div>
     </section>
-    <style>
-
-        body, h1, h2, h3, p {
-            margin: 0;
-            padding: 0;
-            font-family: 'Source Sans Pro', sans-serif;
-            font-size: 1em;
-            color: #333;
-            font-weight: 400;
-        }
-
-        #content {
-            margin: 5px;
-            padding: 20px;
-            width: 805px;
-            border: 1px solid #ccc;
-        }
-
-        #map {
-            margin: 10px 0px 0px 0px;
-            padding: 0px;
-        }
-
-        h1, h2 {
-            line-height: 1em;
-            font-size: 1.75em;
-            font-weight: 900;
-            color: #000;
-        }
-
-        h2.year {
-            margin: 10px 0px 0px 0px;
-            font-size: 1.3em;
-            font-weight: 700;
-        }
-
-        p {
-            margin: 10px 0px 0px 0px;
-        }
-
-        .county {
-            fill: #fff;
-            /*stroke: ;*/
-        }
-
-        .states {
-            fill: none;
-            stroke: darkgray;
-            stroke-linejoin: round;
-        }
-
-        input {
-            display: block;
-            width: 200px;
-            margin: 10px 0px 0px 0px;
-        }
-
-        #legend text {
-            font-size: 0.9em;
-            color: #333;
-            font-weight: 400;
-        }
-
-        .tooltip {
-            position: absolute;
-            padding: 7px;
-            font-size: 0.9em;
-            pointer-events: none;
-            background: #fff;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-
-            -moz-box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.25);
-            -webkit-box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.25);
-            box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.25);
-        }
-
-        .tooltip p {
-            margin: 0;
-            padding: 0;
-        }
-
-        .tooltip table {
-            margin: 0;
-            padding: 0;
-            border-collapse: collapse;
-        }
-
-        .wide {
-            width: 140px;
-        }
-
-    </style>
-
-    <section class="section" id="chloropleth">
+    <section class="section chloropleth">
         <div class="container">
-            <h1>COVID Cases By County</h1>
-            <h2 class="year"></h2>
-            <div class="slider is-fullwidth is-large is-circle"></div>
+            <h1 class="title">COVID Cases By County</h1>
+            <h2 class="year subtitle"></h2>
+            <div class="slider"></div>
             <div id="map"></div>
-            <p>Data from <a href="https://www.nytimes.com/interactive/2020/us/coronavirus-us-cases.html"
-                            target="_blank">The
-                New
-                York Times</a>, based on reports from state and local health agencies.</p>
         </div>
     </section>
 </div>
+
+
+<footer class="footer has-background-white">
+    <div class="content has-text-centered">
+        <p>Data from <a href="https://www.nytimes.com/interactive/2020/us/coronavirus-us-cases.html"
+                        target="_blank">The
+            New
+            York Times</a>, based on reports from state and local health agencies.</p>
+    </div>
+</footer>
+
 <script src="routing.js"></script>
 <script type="text/javascript" src="map.js"></script>
 

@@ -1,11 +1,13 @@
 var margin = {top: 20, right: 20, bottom: 20, left: 20};
+var padding = 40
 width = 800 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom,
     formatPercent = d3.format(".1%");
 
 var svg = d3.select("#map").append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
+    .attr("width", width + margin.left + margin.right + padding)
+    .attr("height", height + margin.top + margin.bottom + padding)
+    .attr("class", "box")
     .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
@@ -20,9 +22,6 @@ queue()
 
 var color = d3.scaleLog()
     .domain([32, 10000])
-    //.domain([10, 12.5, 15, 17.5, 20, 22.5, 25])
-    //.domain([32, 64, 128, 256, 1024, 2048, 4096, 8192, 16384, 16384*2])
-    // .range(["#fff7bc", "#fee391", "#fec44f", "#fe9929", "#ec7014", "#cc4c02", "#993404", "#662506"]);
     .base(2)
     .range(["lightblue", "darkblue"])
 
@@ -169,7 +168,7 @@ function ready(error, data, us) {
         .attr("max", end_date * 1)
         .attr("step", 86400000)
         .attr("value", end_time)
-        .attr("class", "slider is-fullwidth is-large is-circle")
+        .attr("class", "slider is-large is-circle")
         .on("input", function () {
             var year = this.value;
             update(year);
