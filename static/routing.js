@@ -15,5 +15,10 @@ function changeChart(chartId) {
 $(checkHash)
 
 function checkHash(){
-    changeChart(window.location.hash.split('#')[1])
+    if(window.location.hash) {
+        changeChart(window.location.hash.split('#')[1])
+    }else{
+        changeChart('cases-time')
+    }
+
 }
